@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<script>
+		$(document).on("ready",function(){
+			var almacen = $(".parrafo").html();
+			alert(almacen);
+
+			//metodo sirve para OBTENER el id
+			var myId = $("#prueba").attr("id");
+			console.log(myId);
+
+			//metodo sirve para ASIGNAR un valor
+			var p1 = $(".pruebita p").attr("class","parrafito");
+			console.log(p1);
+
+			var clase = $("#prueba").attr("id");
+			console.log(clase);
+
+			var texto = $(".parrafo").attr("id","jromanz");
+			console.log(texto);
+
+			var cssJson = {
+				"text-align" : "center",
+				"color": "red",
+				"font-family": "Helvetica"
+			};
+
+			$("body html").css("background","#fff");
+			$("h1").css(cssJson);
+
+			//OBTENIENDO VALORES
+			var bgItem2 = $("#item2").css("background-color");
+			var cItem1 = $("#item1").css("color");
+
+			console.log(cItem1);
+			console.log(bgItem2);
+
+			if(cItem1!=bgItem2){
+				$("#item2").css("color","#fff");
+				alert("Para vos!");
+			}
+		});
+
+	</script>
+	<style>
+		body,html{
+			background: #ccc;
+			color: red;
+			font-family: Arial;
+			margin: 0;
+			padding: 0;
+		}
+
+		#item1{
+			background: #f6f6f6;
+			height: 50px;
+			margin: 5% auto;
+			width: 300px;
+		}
+
+		#item2{
+			display: block;
+			background: #000;
+			margin: 5% auto;
+			height: 50px;
+			width: 300px;
+		}
+	</style>
+</head>
+<body>
+	<button id="boton">Haz click sobre mí</button>
+	<p class="parrafo"><strong>HOLA JQUERY</strong>
+	</p>
+	<div id="prueba"></div>
+	<div class="pruebita">
+		<p></p>
+	</div>
+	<h1>M&eacute;todo .css() de jQuery</h1>
+	<div id="item1">Item 1</div>
+	<div id="item2">Item 2</div>
+</body>
+</html>

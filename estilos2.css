@@ -1,0 +1,71 @@
+@font-face{
+	font-family: "Deliciosa";
+	src: local('?'), url('fonts/Delicious-Roman.otf'), url('Delicious-Roman.woff') format('woff'), url('Delicious-Roman.ttf') format('truetype'), url('Delicious-Roman.svg#webfont57ztNrX6') format('svg');
+}
+#ejemplo{
+		font-family: "Deliciosa";
+}
+#ejemplito{
+	background-color: red;
+	height: 200px;
+	width: 100px;
+}
+.ww{
+	word-wrap:break-word;
+}
+.usomoz{
+	background-color: gray;
+	-moz-column-count:3;
+	-moz-column-width:100px;
+	-moz-column-gap:20px;
+	-moz-column-rule:1px solid #ccc;
+	-webkit-column-count:3;
+	-webkit-column-width:100px;
+	-webkit-column-gap:20px;
+	-webkit-column-rule:1px solid #ccc;
+}
+body{
+	background-color: rgba(100,20,40,.5);
+	/*background-color: hsla(300,130%,65%,10%);*/
+}
+#capa1{
+	border-radius: 15px;
+	padding: 20px;
+}
+#capa2{
+	border-radius: 15px 0px 15px 25px;
+	margin-top: 20px;
+	padding: 20px;
+	width:200px;
+	height: 200px;
+	background-color: rgba(100,170,80,.7);
+}
+#capa3{
+	border-radius: 50px/25px;
+	margin-right: 20px;
+	padding: 20px;
+	width: 300px;
+	height:300px;
+	background-color: rgba(100,170,80,.7);
+	box-shadow: 10px 10px 7px rgba(0,0,0,.5), -5px -10px 7px rgba(0,0,0,.5);
+}
+.cap{
+	border-width: 20px 30px 25px 20px;
+	width: 100px;
+	height:80px;
+	margin-bottom: 30px;
+}
+#x1{
+	-webkit-border-image: url("logo.png") 33% stretch stretch;
+	-moz-border-image: url("logo.png") 33% stretch stretch;
+}
+.sombra{
+	text-shadow: 3px 3px 3px rgba(0,0,0,.5);
+	-webkit-text-shadow: 3px 3px 3px rgba(0,0,0,.5);
+	-moz-text-shadow: 3px 3px 3px rgba(0,0,0,.5);
+}
+.sombra2{
+	box-shadow: 3px 3px 3px rgba(0,0,0,.5);
+	-webkit-box-shadow:3px 3px 3px rgba(0,0,0,.5);
+	-moz-box-shadow:3px 3px 3px rgba(0,0,0,.5);
+}

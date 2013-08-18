@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<style>
+		div{
+			width: 250px;
+			border: solid 1px #ccc;
+			background: green;
+		}
+	</style>
+	<script>
+		
+		var caja1bg,v=0;
+		
+		$(document).on("ready",function(){
+
+			$("ul li").each(function(index,elemento){
+				$.data(elemento,"posicion",index);
+			});
+
+			//OBTENER
+			$("ul li").each(function(index,elemento){
+				var l = $.data(elemento,"posicion");
+				console.log(l);
+			});
+
+
+			$("a").on("click",function(e){
+				e.preventDefault();
+				console.log($(this).attr("id"));
+			});
+
+
+			var f1 = function(){
+				console.log("Pasaste el cursor");
+			};
+
+			var f2 = function(){
+						v++;
+						caja1bg = $(this).css("background");
+						$(this).css("background","red");							
+			};
+
+			//multiples eventos
+			$("#caja1").on({
+					"mouseover":f2
+				,
+					"mouseout":function(){
+						$(this).css("background",caja1bg);
+						if(v>=3)
+							$("#caja1").off("mouseover",f2);
+					}
+				}
+			);
+
+			$("#caja1").on("mouseover",f1);
+			$("#caja1").one("mouseout",function(){
+				console.log("Solo una vez!!!");
+			});
+			
+			$(".cambiar").on("click",function(){
+				$("#myInput").trigger("cambio",[$(this).attr("id")]);
+			});
+
+			$("#myInput").on("cambio",function(e,id){
+				console.log(id);
+				if(this.checked){
+					$("#myInput").removeAttr("checked");
+					$(".cambiar").text("Encender");
+				}else{
+					$("#myInput").prop("checked",true);
+					$("#myInput").attr("checked",true);
+					$(".cambiar").text("Apagar");
+				}
+			});
+
+		});
+
+
+	</script>
+</head>
+<body>
+	<div id="contenedor">
+		<ul>
+			<li>item1</li>
+			<li>item2</li>
+			<li>item3</li>
+		</ul>
+	</div>
+	<a id="evento1" href="http://www.codigofacilito.com">Entrar</a>
+	<a id="evento2" href="http://www.codigofacilito.com">Entrar</a>
+	<div id="caja1"><p>Hola como te va!</p></div>
+		<input id="myInput" type="checkbox" checked="true">
+		<button class="cambiar" id="btnUno">Apagar</button>
+		<button class="cambiar" id="btnDos">Apagar</button>
+</body>

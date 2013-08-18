@@ -1,0 +1,117 @@
+#texto{
+	padding: 50px;
+	font-family: arial;
+	font-size: 22px;
+	font-weight: bold;
+}
+.giro{
+	transform:rotate(30deg,15deg);
+	-webkit-transform:rotate(30deg,15deg);
+	-moz-transform:rotate(30deg,15deg);
+}
+.traslado{
+	transform:translate(50px,5px);
+	-webkit-transform:translate(50px,5px);
+	-moz-transform:translate(50px,5px);
+}
+.inclino{
+	transform:skew(30deg,3deg);
+	-webkit-transform:skew(30deg,3deg);
+	-moz-transform:skew(30deg,15deg);
+}
+.escalo{
+	-moz-transform:scale(1.5,1.6);
+	-webkit-transform:scale(1.5,1.6);
+	transform:scale(1.5,1.6);
+	text-align: center;
+}
+
+@-webkit-keyframes animacionCoche{
+	from{
+		left: 0px;
+	}
+	65%{
+		left: 30px;
+	}
+	to{
+		left: 350px;
+	}
+}
+@-webkit-keyframes animacionCoche2{
+	from{
+		right: 350px;
+	}
+	to{
+		top: 100px;
+	}
+}
+#coche{
+	-webkit-animation-name:animacionCoche,animacionCoche2;
+	-webkit-animation-duration:5s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-direction:alternate;
+	position: relative;
+	width: 50px;
+	height: 50px;
+}
+
+@-webkit-keyframes animacion{
+    from {
+       left: 0px;
+    }
+    to {
+       left: 150px;
+    }
+}
+
+.capa{
+    margin-bottom:30px;
+    text-align:center;
+    position:relative;
+    width:300px;
+    height:60px;
+    font-family:arial;
+    font-size:22px;
+    font-weight:bold;
+    background-color: rgb(55, 190, 90);
+}
+
+#capaEase{
+    -webkit-animation-name:animacion;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+    -webkit-animation-timing-function:ease;
+}
+
+#capaLinear{
+    -webkit-animation-name:animacion;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+    -webkit-animation-timing-function:linear;
+}
+
+#capaEaseIn{
+    -webkit-animation-name:animacion;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+    -webkit-animation-timing-function:ease-in;
+}
+
+#capaEaseOut{
+    -webkit-animation-name:animacion;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+    -webkit-animation-timing-function:ease-out;
+}
+
+#capaEaseInOut{
+    -webkit-animation-name:animacion;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+    -webkit-animation-timing-function:ease-in-out;
+}

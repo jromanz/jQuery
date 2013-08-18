@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<style>
+		body,html{
+			padding: 100px;
+		}
+		div{
+			display: block;
+			height: 80px;
+			width: 400px;
+			margin: 0 auto;
+		}
+
+		#caja1{
+			background: rgba(56,56,56,.8);
+			margin-bottom: 100px;
+		}
+		#caja2{
+			background: rgba(89,69,36,.8);	
+		}
+	</style>
+	<script>
+
+		$(document).on("ready",function(){
+
+			var to = setTimeout("pararAnim()",2000);
+
+			$("#caja1").animate(
+					{
+						marginBottom: 0
+					},5000,
+					function(){
+						$("#caja1").animate(
+								{
+									backgroundColor: "#0FD",
+									marginTop: -100,
+									opacity: 0.5
+								}
+							);
+					}
+				);
+			
+			$("#caja1").slideUp().delay(2000).slideDown();
+		});
+
+		function pararAnim(){
+			$("#caja1").stop();
+		}
+
+	</script>
+</head>
+<body>
+	<div id="caja1">
+	</div>
+	<div id="caja2"></div>				
+</body>
+</html>

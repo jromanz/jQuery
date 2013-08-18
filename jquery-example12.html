@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<style>
+
+		body,html{
+			padding: 100px;
+		}
+		div{
+			display: block;
+			height: 80px;
+			width: 400px;
+			margin: 0 auto;
+		}
+
+		#ejemplo{
+			height: 200px;
+			width: 400px;
+			background-color: rgb(250,100,100);
+		}
+	</style>
+	<script>
+
+		$(document).on("ready",function(){
+
+			$("#boton").on("click",function(){
+				$("#ejemplo").slideUp("slow","linear");
+				$(this).animate(
+						{
+							height: ["+=100","linear"],
+							width: ["+=100","linear"]
+						}
+					);
+			});
+
+			
+		});
+
+	</script>
+</head>
+<body>
+	<div id="ejemplo"></div>		
+	<button id="boton">Mover</button>			
+</body>
+</html>

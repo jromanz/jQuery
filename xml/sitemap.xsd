@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html><head><style id="xml-viewer-style">/*
+ * Copyright (C) 2011 Google Inc. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following disclaimer
+ * in the documentation and/or other materials provided with the
+ * distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY GOOGLE INC. AND ITS CONTRIBUTORS
+ * âAS ISâ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL GOOGLE INC.
+ * OR ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+div.header {
+    border-bottom: 2px solid black;
+    padding-bottom: 5px;
+    margin: 10px;
+}
+
+div.collapsible > div.hidden {
+    display:none;
+}
+
+.pretty-print {
+    margin-top: 1em;
+    margin-left: 20px;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+#webkit-xml-viewer-source-xml {
+    display: none;
+}
+
+.collapsible-content {
+    margin-left: 1em;
+}
+.comment {
+    white-space: pre;
+}
+
+.button {
+    -webkit-user-select: none;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: -10px;
+    width: 10px;
+    background-repeat: no-repeat;
+    background-position: left top;
+    vertical-align: bottom;
+}
+
+.collapse-button {
+    background-image: -webkit-canvas(arrowDown);
+    height: 10px;
+}
+
+.expand-button {
+    background-image: -webkit-canvas(arrowRight);
+    height: 11px;
+}
+</style></head><body><div id="webkit-xml-viewer-source-xml"><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" targetNamespace="http://www.sitemaps.org/schemas/sitemap/0.9" elementFormDefault="qualified">
+<xsd:annotation>
+  <xsd:documentation>
+    XML Schema for Sitemap files.
+    Last Modifed 2008-03-26
+  </xsd:documentation>
+</xsd:annotation>
+
+<xsd:element name="urlset">
+  <xsd:annotation>
+    <xsd:documentation>
+      Container for a set of up to 50,000 document elements.
+      This is the root element of the XML file.
+    </xsd:documentation>
+  </xsd:annotation>
+ <xsd:complextype>
+   <xsd:sequence>
+     <xsd:element name="url" type="tUrl" maxOccurs="unbounded" />
+   </xsd:sequence>
+ </xsd:complextype>
+</xsd:element>
+
+<xsd:complextype name="tUrl">
+  <xsd:annotation>
+    <xsd:documentation>
+      Container for the data needed to describe a document to crawl.
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:sequence>
+    <xsd:element name="loc" type="tLoc" />
+    <xsd:element name="lastmod" type="tLastmod" minOccurs="0" />
+    <xsd:element name="changefreq" type="tChangeFreq" minOccurs="0" />
+    <xsd:element name="priority" type="tPriority" minOccurs="0" />
+    <xsd:any namespace="##other" minOccurs="0" maxOccurs="unbounded" processContents="strict" />
+  </xsd:sequence>
+</xsd:complextype>
+
+<xsd:simpletype name="tLoc">
+  <xsd:annotation>
+    <xsd:documentation>
+      REQUIRED: The location URI of a document.
+      The URI must conform to RFC 2396 (http://www.ietf.org/rfc/rfc2396.txt).
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:anyURI">
+    <xsd:minlength value="12" />
+    <xsd:maxlength value="2048" />
+  </xsd:restriction>
+</xsd:simpletype>
+
+<xsd:simpletype name="tLastmod">
+  <xsd:annotation>
+    <xsd:documentation>
+      OPTIONAL: The date the document was last modified. The date must conform
+      to the W3C DATETIME format (http://www.w3.org/TR/NOTE-datetime).
+      Example: 2005-05-10
+      Lastmod may also contain a timestamp.
+      Example: 2005-05-10T17:33:30+08:00
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:union>
+    <xsd:simpletype>
+      <xsd:restriction base="xsd:date" />
+    </xsd:simpletype>
+    <xsd:simpletype>
+      <xsd:restriction base="xsd:dateTime" />
+      </xsd:simpletype>
+  </xsd:union>
+</xsd:simpletype>
+
+<xsd:simpletype name="tChangeFreq">
+  <xsd:annotation>
+    <xsd:documentation>
+      OPTIONAL: Indicates how frequently the content at a particular URL is
+      likely to change. The value "always" should be used to describe
+      documents that change each time they are accessed. The value "never"
+      should be used to describe archived URLs. Please note that web
+      crawlers may not necessarily crawl pages marked "always" more often.
+      Consider this element as a friendly suggestion and not a command.
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:string">
+    <xsd:enumeration value="always" />
+    <xsd:enumeration value="hourly" />
+    <xsd:enumeration value="daily" />
+    <xsd:enumeration value="weekly" />
+    <xsd:enumeration value="monthly" />
+    <xsd:enumeration value="yearly" />
+    <xsd:enumeration value="never" />
+  </xsd:restriction>
+</xsd:simpletype>
+
+<xsd:simpletype name="tPriority">
+  <xsd:annotation>
+    <xsd:documentation>
+      OPTIONAL: The priority of a particular URL relative to other pages
+      on the same site. The value for this element is a number between
+      0.0 and 1.0 where 0.0 identifies the lowest priority page(s).
+      The default priority of a page is 0.5. Priority is used to select
+      between pages on your site. Setting a priority of 1.0 for all URLs
+      will not help you, as the relative priority of pages on your site
+      is what will be considered.
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:restriction base="xsd:decimal">
+    <xsd:mininclusive value="0.0" />
+    <xsd:maxinclusive value="1.0" />
+  </xsd:restriction>
+</xsd:simpletype>
+
+</xsd:schema></div><div class="header"><span>This XML file does not appear to have any style information associated with it. The document tree is shown below.</span><br /></div><div class="pretty-print" id="tree"><div class="collapsible" id="collapsible0"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:schema<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">xmlns:xsd</span>="<span class="webkit-html-attribute-value">http://www.w3.org/2001/XMLSchema</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">xmlns</span>="<span class="webkit-html-attribute-value">http://www.sitemaps.org/schemas/sitemap/0.9</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">targetNamespace</span>="<span class="webkit-html-attribute-value">http://www.sitemaps.org/schemas/sitemap/0.9</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">elementFormDefault</span>="<span class="webkit-html-attribute-value">qualified</span>"</span>&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible1"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible2"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span></div><div class="collapsible-content"><span class="text">XML Schema for Sitemap files.
+    Last Modifed 2008-03-26</span></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible3"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:element<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">urlset</span>"</span>&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible4"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible5"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span></div><div class="collapsible-content"><span class="text">Container for a set of up to 50,000 document elements.
+      This is the root element of the XML file.</span></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible6"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:complexType&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible7"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:sequence&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:element<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">url</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">type</span>="<span class="webkit-html-attribute-value">tUrl</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">maxOccurs</span>="<span class="webkit-html-attribute-value">unbounded</span>"</span>/&gt;</span></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:sequence&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:sequence&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:sequence&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:complexType&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:complexType&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:complexType&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:element&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:element<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">urlset</span>"</span>&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:element&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible8"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:complexType<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">tUrl</span>"</span>&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible9"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible10"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span></div><div class="collapsible-content"><span class="text">Container for the data needed to describe a document to crawl.</span></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible11"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:sequence&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:element<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">loc</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">type</span>="<span class="webkit-html-attribute-value">tLoc</span>"</span>/&gt;</span></div><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:element<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">lastmod</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">type</span>="<span class="webkit-html-attribute-value">tLastmod</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">minOccurs</span>="<span class="webkit-html-attribute-value">0</span>"</span>/&gt;</span></div><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:element<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">changefreq</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">type</span>="<span class="webkit-html-attribute-value">tChangeFreq</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">minOccurs</span>="<span class="webkit-html-attribute-value">0</span>"</span>/&gt;</span></div><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:element<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">priority</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">type</span>="<span class="webkit-html-attribute-value">tPriority</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">minOccurs</span>="<span class="webkit-html-attribute-value">0</span>"</span>/&gt;</span></div><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:any<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">namespace</span>="<span class="webkit-html-attribute-value">##other</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">minOccurs</span>="<span class="webkit-html-attribute-value">0</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">maxOccurs</span>="<span class="webkit-html-attribute-value">unbounded</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">processContents</span>="<span class="webkit-html-attribute-value">strict</span>"</span>/&gt;</span></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:sequence&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:sequence&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:sequence&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:complexType&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:complexType<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">tUrl</span>"</span>&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:complexType&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible12"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:simpleType<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">tLoc</span>"</span>&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible13"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible14"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span></div><div class="collapsible-content"><span class="text">REQUIRED: The location URI of a document.
+      The URI must conform to RFC 2396 (http://www.ietf.org/rfc/rfc2396.txt).</span></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible15"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:restriction<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">base</span>="<span class="webkit-html-attribute-value">xsd:anyURI</span>"</span>&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:minLength<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">value</span>="<span class="webkit-html-attribute-value">12</span>"</span>/&gt;</span></div><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:maxLength<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">value</span>="<span class="webkit-html-attribute-value">2048</span>"</span>/&gt;</span></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:restriction&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:restriction<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">base</span>="<span class="webkit-html-attribute-value">xsd:anyURI</span>"</span>&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:restriction&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:simpleType&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:simpleType<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">tLoc</span>"</span>&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:simpleType&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible16"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:simpleType<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">tLastmod</span>"</span>&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible17"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible18"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span></div><div class="collapsible-content"><span class="text">OPTIONAL: The date the document was last modified. The date must conform
+      to the W3C DATETIME format (http://www.w3.org/TR/NOTE-datetime).
+      Example: 2005-05-10
+      Lastmod may also contain a timestamp.
+      Example: 2005-05-10T17:33:30+08:00</span></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible19"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:union&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible20"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:simpleType&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:restriction<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">base</span>="<span class="webkit-html-attribute-value">xsd:date</span>"</span>/&gt;</span></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:simpleType&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:simpleType&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:simpleType&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible21"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:simpleType&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:restriction<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">base</span>="<span class="webkit-html-attribute-value">xsd:dateTime</span>"</span>/&gt;</span></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:simpleType&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:simpleType&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:simpleType&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:union&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:union&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:union&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:simpleType&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:simpleType<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">tLastmod</span>"</span>&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:simpleType&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible22"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:simpleType<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">tChangeFreq</span>"</span>&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible23"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible24"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span></div><div class="collapsible-content"><span class="text">OPTIONAL: Indicates how frequently the content at a particular URL is
+      likely to change. The value "always" should be used to describe
+      documents that change each time they are accessed. The value "never"
+      should be used to describe archived URLs. Please note that web
+      crawlers may not necessarily crawl pages marked "always" more often.
+      Consider this element as a friendly suggestion and not a command.</span></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible25"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:restriction<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">base</span>="<span class="webkit-html-attribute-value">xsd:string</span>"</span>&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:enumeration<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">value</span>="<span class="webkit-html-attribute-value">always</span>"</span>/&gt;</span></div><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:enumeration<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">value</span>="<span class="webkit-html-attribute-value">hourly</span>"</span>/&gt;</span></div><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:enumeration<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">value</span>="<span class="webkit-html-attribute-value">daily</span>"</span>/&gt;</span></div><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:enumeration<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">value</span>="<span class="webkit-html-attribute-value">weekly</span>"</span>/&gt;</span></div><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:enumeration<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">value</span>="<span class="webkit-html-attribute-value">monthly</span>"</span>/&gt;</span></div><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:enumeration<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">value</span>="<span class="webkit-html-attribute-value">yearly</span>"</span>/&gt;</span></div><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:enumeration<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">value</span>="<span class="webkit-html-attribute-value">never</span>"</span>/&gt;</span></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:restriction&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:restriction<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">base</span>="<span class="webkit-html-attribute-value">xsd:string</span>"</span>&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:restriction&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:simpleType&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:simpleType<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">tChangeFreq</span>"</span>&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:simpleType&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible26"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:simpleType<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">tPriority</span>"</span>&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible27"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="collapsible" id="collapsible28"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span></div><div class="collapsible-content"><span class="text">OPTIONAL: The priority of a particular URL relative to other pages
+      on the same site. The value for this element is a number between
+      0.0 and 1.0 where 0.0 identifies the lowest priority page(s).
+      The default priority of a page is 0.5. Priority is used to select
+      between pages on your site. Setting a priority of 1.0 for all URLs
+      will not help you, as the relative priority of pages on your site
+      is what will be considered.</span></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:documentation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:documentation&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:annotation&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:annotation&gt;</span></div></div></div><span class="text" /><div class="collapsible" id="collapsible29"><div class="expanded"><div class="line"><span class="button collapse-button" /><span class="webkit-html-tag">&lt;xsd:restriction<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">base</span>="<span class="webkit-html-attribute-value">xsd:decimal</span>"</span>&gt;</span></div><div class="collapsible-content"><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:minInclusive<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">value</span>="<span class="webkit-html-attribute-value">0.0</span>"</span>/&gt;</span></div><span class="text" /><div class="line"><span class="webkit-html-tag">&lt;xsd:maxInclusive<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">value</span>="<span class="webkit-html-attribute-value">1.0</span>"</span>/&gt;</span></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:restriction&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:restriction<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">base</span>="<span class="webkit-html-attribute-value">xsd:decimal</span>"</span>&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:restriction&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:simpleType&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:simpleType<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">name</span>="<span class="webkit-html-attribute-value">tPriority</span>"</span>&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:simpleType&gt;</span></div></div></div><span class="text" /></div><div class="line"><span class="webkit-html-tag">&lt;/xsd:schema&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button" /><span class="webkit-html-tag">&lt;xsd:schema<span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">xmlns:xsd</span>="<span class="webkit-html-attribute-value">http://www.w3.org/2001/XMLSchema</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">xmlns</span>="<span class="webkit-html-attribute-value">http://www.sitemaps.org/schemas/sitemap/0.9</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">targetNamespace</span>="<span class="webkit-html-attribute-value">http://www.sitemaps.org/schemas/sitemap/0.9</span>"</span><span class="webkit-html-attribute"> <span class="webkit-html-attribute-name">elementFormDefault</span>="<span class="webkit-html-attribute-value">qualified</span>"</span>&gt;</span><span class="text">...</span><span class="webkit-html-tag">&lt;/xsd:schema&gt;</span></div></div></div></div></body></html>

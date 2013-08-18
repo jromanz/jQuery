@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<script>
+		$(document).on("ready",function(){
+			$("#prueba").text("<p>Hola Mundo!</p>");
+			$(".prueba").html("<strong>Estoy usando JQUERY</strong>");
+		});
+
+		$(function(){
+			$("div#miDiv").css({
+				"background-color": "#fff6f1",
+			});
+			$("div.miDiv article p").text("Selectores avanzados");
+
+			$("#parrafoUno, #parrafoDos, #miSpan").text("Somos iguales");
+
+
+			var seleccion = $(".ejem1");
+
+			if(seleccion.length){
+				console.log("Existen: " + seleccion.length);
+			}else{
+				console.log("No existen elementos");
+			}
+
+			seleccion.not(".cl1").text("Este elemento no tiene clase cl1");
+
+			seleccion.has("p").text("este elemento tiene paragraph en su contenido");
+
+			$('li').first().html("<strong>Soy el elemento 1</strong>");
+			$("li").eq(2).text("Soy el elemento 3");
+		});
+
+
+	</script>
+</head>
+<body>
+	<button id="boton">Haz click sobre mí</button>
+	<div id="prueba"></div>
+	<div class="prueba"></div>
+	<div class="miDiv">
+		<article>
+			<p id="parrafoUno">Hola JQUERY</p>
+		</article>
+	</div>
+	<div id="miDiv">
+		<article>
+			<p id="parrafoDos">Y el curso de codigo facilito</p>
+		</article>
+	</div>
+	<span id="miSpan"></span>
+
+	<div class="ejem1 cl1">
+			<p></p>
+		</div>
+	<div class="ejem1">
+			<p></p>
+			<span></span>
+	</div>
+
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>

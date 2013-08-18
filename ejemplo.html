@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<link rel="stylesheet" href="css/mejorando.css" />
+	<link rel="stylesheet" href="video-js/video-js.css" />
+	<script src="video-js/video.js"></script>
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<script src="js/canvas.js"></script>
+	<script type="text/javascript">
+			function factorial(num){
+			var fac = 1;
+			for (num; num > 0; num--)
+				fac = fac * num;
+			return fac;
+			}
+
+			var resultado = factorial(4);
+			alert(resultado);
+
+			window.addEventListener("load",function(){
+				alert("La página se ha cargado!");
+			});
+	</script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+</head>
+<body>
+	<div id="container">
+		<header>
+			<hgroup>
+				<h1>El blog de MaRLeY</h1>
+				<h2>Enseñanza de programación</h2>
+			</hgroup>
+			<nav class="menu">
+				<ul class="item">
+					<li class="items1">Inicio</li>
+					<li class="items2">Tutoriales</li>
+					<li class="items3">Servicios</li>
+					<li class="items4">Contactenos</li>
+				</ul>
+			</nav>
+		</header>
+		<section>
+			<div id="principal">
+				<article>
+					<hgroup>
+						<h1>Este es el blog de Julio Rom&aacute;n</h1>
+					</hgroup>
+					<p>
+						Estas por aprender a crear una pagina web con etiquetas del nuevo, <figure><img src="img/logo-html5.jpg" width="100"><figcaption>Logito HTML5</figcaption></figure>va el contenido principal de la página, visitando <a href="http://www.kalerguiz.com">www.kalerguiz.com</a>, <time datetime="2013-02-08" pubdate></time>
+					</p>
+					<p draggable="true">Parrafo ejemplo</p>
+					<p contenteditable="true" spellcheck="true">Parrafo editable</p>
+					<p hidden="true">Parrafo ejemplo</p>
+				</article>
+				<article>
+					<audio controls="controls" loop="loop">
+						<source src="audio/Mixfuckedup-PeliculaLenta.ogg" type="audio/ogg"></source>
+						<source src="audio/Mixfuckedup-PeliculaLenta.mp3" type="audio/mp3"></source>
+						Tu navegador no es compatible con HTML5
+					</audio>
+				</article>
+				<article>
+					<p>Temperatura 5 grados</p>
+					<meter low="10" optimum="20" high="35" value="5" min="-20" max="100">Tu navegador no reconoce este control</meter>
+				</article>
+				<article>
+					<form oninput="resultado.value=parseInt(x.value)+parseInt(y.value)">
+						<input type="number" name="x" />
+						<input type="number" name="y" />
+						<output name="resultado" for="x y"></output>
+					</form>
+				</article>
+				<article>
+					<video width="320" height="240" controls="controls" loop="loop" preload="none" poster="img/logo-html5.jpg">
+						<source src="video/video-prueba.mp4" type="video/mp4"></source>
+						<source src="video/video-prueba.ogv" type="video/ogv"></source>
+						Tu navegador no es compatible con HTML5	
+					</video>
+				</article>
+				<aside>
+					<p>Visita nuestro canal de Youtube <a href="http://www.youtube.com/kalerguiz">kalerguiz</a></p>
+					<p>Siguenos en twitter como <a href="http://www.twitter.com/kalerguiz">kalerguiz</a></p>
+				</aside>				
+			</div>
+		</section>
+	</div>
+	<footer>
+		<canvas id="miCanvas">
+		</canvas>
+	</footer>
+</body>
+</html>

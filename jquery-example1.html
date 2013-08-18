@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<script type="text/javascript">
+			function factorial(num){
+			var fac = 1;
+			for (num; num > 0; num--)
+				fac = fac * num;
+			return fac;
+			}
+
+			var resultado = factorial(4);
+			alert(resultado);
+
+			for(var i=0;i<4;i++){
+				alert(i);
+				alert('Entre');
+			}
+
+			var j = 1;
+			do{
+				alert(j);
+				j++;
+			}while(j<5);
+
+			var arreglo = ["a","b",3,4];
+
+			for (i in arreglo){
+				alert(arreglo[i]);
+			}
+
+			window.addEventListener("load",function(){
+				alert("La página se ha cargado!");
+			});
+
+			window.addEventListener("keydown",tecla_presionada);
+
+			var boton = document.getElementById('boton');
+			boton.addEventListener("click",boton_click);
+
+			function boton_click(evento){
+				alert("Bienvenidos a codigofacilito.com");
+				boton.removeEventListener("click",boton_click);
+				alert(evento.type);
+				alert(evento.screenX);
+			}
+
+			function tecla_presionada(evento){
+				alert(evento.keyCode);
+			}
+
+	</script>	
+</head>
+<body>
+	<button id="boton">Haz click sobre mí</button>
+
+</body>
+</html>

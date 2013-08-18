@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<title></title>
+	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript">
+		$(document).on("ready",function(){
+			var cuantos = 0;
+			var cuales = 0;
+			var cuantosByName = 0;
+			var traerli = 0;
+
+			cuantos = $(':input').filter(':radio').length;
+			cuales = $('#ejemplos').find('form').length;
+			cuantosByName = $(":input[name='sexo']","#myId").length;
+
+			traerli = $('ul #dos').prev().attr('id');
+			traerli = $('ul #dos').next().attr('id');
+			traerli = $('ul #dos').parent().attr('id');
+			traerli = $('ul #dos').parents().html();
+			traerli = $("ul").children().length;
+			traerli = $('ul #uno').nextAll().length;
+			traerli = $('ul #cuatro').prevAll().length;
+
+			$(':input').filter(':radio').addClass('nueva');
+			//$(':input').val(2);
+
+			alert("Hola tengo "+ cuantosByName + " inputs, y " + cuantos + " radios, y " + cuales +" formularios, " + traerli);
+		});
+
+	</script>	
+</head>
+<body>
+	<div id="ejemplos">
+		<form>
+			<input name="sexo" value="H" type="radio" />
+			<input name="name" value="marco" type="text" />
+			<input name="boton" value="boton" type="button" />
+		</form>
+		<form id="myId">
+			<input name="sexo" value="F" type="radio" />
+			<input name="name" value="mary" type="text" />
+			<input name="boton" value="boton2" type="button" />
+		</form>
+		<ul id="padre">
+			<li id="uno">1</li>
+			<li id="dos">2</li>
+			<li id="tres">3</li>
+			<li id="cuatro">4</li>
+		</ul>
+	</div>
+</body>
+</html>

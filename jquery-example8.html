@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body, html{
+			background: #f1f1f1;
+			font-family: Helvetica;
+			color: #000;
+		}
+		div#frm{
+			display: block;
+			margin: 5px auto;
+			width: 250px;
+		}
+		button{
+			width: 80px;
+		}
+		input[type="text"],input[type="button"],select{
+			padding: 7px;
+			background: #fff;
+			border: solid 1px #ccc;
+			color:#000;
+		}
+		input[type="text"]:focus,input[type="text"]:active,input[type="text"]:hover,input[type="button"]:focus,input[type="button"]:active,input[type="button"]:hover,select:focus,select:active,select:hover{
+			border-color: #777;
+		}
+		h1{
+			text-shadow:1px 1px 1px #ccc;
+			font-size: 22px;
+		}
+		ol{
+			display: block;
+			width: 500px;
+			margin: 0 auto;
+		}
+		ol li{
+			background: #088a29;
+			margin: 5px auto;
+			height: 30px;
+			width: 100%;
+		}
+		#lista ol li a#clsEliminar{
+			padding: 5px;
+			border: solid 1px #ccc;
+			background: #fff url(img/eliminar.png) center no-repeat;
+			border-radius: 3px;
+			width: 10px;
+			display: inline-block;
+			margin-right: 10px;
+			cursor: pointer;
+		}
+		#lista ol li a#clsEliminar:hover{
+			border-color: #f00;
+		}
+	</style>
+	<script>
+		
+		$(function(){
+
+			$("#texto").focus();
+			
+			$("button").on("click",function(){
+
+				var nombre = $("#texto").val();
+
+
+				if($.trim(nombre)!=""){
+					
+					if(!$("div#lista").find("ol").length)
+						$("div#lista").append("<ol/>");					
+					
+					
+					$olLista = $("div#lista").find("ol");
+					var $liNuevo = $("<li/>").html('<a id="clsEliminar">&nbsp;</a>'+$.trim(nombre));
+
+					if(!$olLista.find("li").length){
+						$olLista.prepend($liNuevo);
+					}else{
+						$olLista.append($liNuevo);
+					}
+
+				}else{
+					alert("Digite algun nombre");
+				}
+
+				$("#texto").val("").focus();
+
+			});
+
+		});
+
+		$(document).on("click","ol li a#clsEliminar",function(){
+				$(this).parent().remove();
+				console.log($(this).parent().attr("id"));
+				$("#texto").val("").focus();				
+			}
+		});
+	</script>
+</head>
+<body>
+	<div id="contenedor">
+		<div id="info">
+			<h1>Manipulación en listas HTML en jQuery</h1>
+		</div>
+		<div id="frm">
+			<input type="text" id="texto"><button id="test">Ejecutar</button>
+		</div>
+		<div id="lista"></div>
+
+	</div>
+</body>
+</html>

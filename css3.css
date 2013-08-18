@@ -1,0 +1,62 @@
+a[href*="ejemplo"]{
+	color:red;
+	font-size: 20px;
+	font-family: inherit;
+}
+a[href^="mailto:"]{
+	font-family: verdana;
+	color:green;
+}
+a[href$=".php"]{
+	font-family: sans-serif;
+	color: gray;
+}
+a[href^="http://"]{
+	color: gray;
+	font-family: verdana;
+}
+h1 ~ h2 {
+	color: blue;
+}
+/*
+p::first-letter{
+	color: red;
+}
+p::first-line{
+	color: blue;
+}
+
+p::after{
+	content: "Ø";
+}
+p::before{
+	content: "você";
+}
+*/
+p::selection{
+	-webkit-
+	background-color: rgba(0,0,0,.1);
+}
+.nt:nth-last-child(2){
+	color: red;
+}
+.nt2:nth-child(odd){
+	color: orange;
+}
+h1:not(.rojo){
+	font-style: italic;
+}
+
+div>p:nth-of-type(even){
+	color:green;
+}
+div>p:last-of-type{
+	font-style: italic;
+}
+div>p:first-of-type{
+	color: yellow;
+}
+h3:not(.rojo){
+	font-style: italic;
+	color: red;
+}

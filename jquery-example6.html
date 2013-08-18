@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<style>
+
+		body, html{
+			background: #000;
+			margin: 0;
+			padding: 0;
+		}
+		header{
+			display: inline-block;
+			margin: 0 auto;
+			width: 365px;
+		}
+		#e1,#e2{
+			background: #0080ff;
+			display: block;
+			height: 100px;
+			margin: 20px auto;
+			width: 400px;
+		}
+		#e1{
+			background: #ff0040;
+			height: 150px;
+		}
+		#e2{
+			padding: 15px;
+			border-radius: 60px 0 60px 0;
+		}
+		p{
+			margin-left: 10px;
+		}
+	</style>
+	<script>
+
+		$(document).on("ready",function(){
+			console.log($("header img").css("width"));
+			//console.log($("header img").width(300));
+			console.log($("#e1").height());
+
+			var pos = $("#e2 p").position();
+			console.log("posición left: " + pos.left + ", " + "posición top : " + pos.top);
+
+			var pos2 = $("#e2 p").offset();
+			console.log("posición left: " + pos2.left + ", " + "posición top : " + pos2.top);
+
+		});
+
+	</script>
+</head>
+<body>
+	<header><img src="img/logo-html5.jpg" alt=""></header>
+	<button id="boton">Haz click sobre mí</button>
+	<div id="e1"></div>
+	<div id="e2"><p>Hola amigos!</p></div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<style>
+
+	</style>
+	<script>
+
+		$(document).ready(function(){
+
+			$.get("hola.html",function(data){
+				$("#receptor").append(data);
+				console.log(data);
+			});
+
+			
+		});
+
+	</script>
+</head>
+<body>
+	<div id="receptor">
+	</div>				
+</body>
+</html>

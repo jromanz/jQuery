@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<style>
+		#caja1{
+			background: rgba(56,56,56,.8);
+			display: block;
+			height: 80px;
+			margin: 5% auto;
+			width: 400px;
+		}
+		#ejemplo{
+			height: 200px;
+			width: 400px;
+			background-color: rgb(250,100,100);
+		}
+	</style>
+	<script>
+
+		$(document).on("ready",function(){
+
+			var elem = $("#caja1");
+
+			$("#btnUno").click(function(){
+				//elem.show();
+				//elem.slideDown();
+				elem.fadeIn(600);
+			});
+			$("#btnDos").click(function(){
+				//elem.hide();
+				//elem.slideUp();
+				elem.fadeOut(200);
+				//elem.slideToggle();
+			});
+
+
+			$.fx.speeds.lento = 3000;
+			$.fx.speeds.rapido = 100;
+
+			$("#boton").on("click",function(){
+				$("#ejemplo").fadeOut("lento",function(){
+					$("body").append("El elemento se ha borrado");
+					$(this).fadeIn("rapido");
+				});
+			});
+
+		});
+
+	</script>
+</head>
+<body>
+	<a id="evento1" href="http://www.codigofacilito.com">Entrar</a>
+	<a id="evento2" href="http://www.codigofacilito.com">Entrar</a>
+	<div id="caja1">
+	</div>
+	<button id="btnDos">Ocultar</button>
+	<button id="btnUno">Mostrar</button>
+	<div id="ejemplo"></div>
+	<button id="boton">Fade out</button>			
+</body>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<style>
+	</style>
+	<script>
+		$(document).on("ready",function(){
+			$("#prueba").attr("class",function(){
+				var cadena = "esteEsUnaClase";
+				return cadena;
+			});
+			var clase = $("#prueba").attr("class");
+			console.log(clase);
+
+			$("#prueba").removeAttr("class");
+			var clase2 = $("#prueba").attr("class");
+			console.log(clase2);
+
+			($("a").on("click",function(e){
+				e.preventDefault();
+				var link = $(this).attr("href");
+				alert("Usted está saliendo de nuestro sitio");
+				location.href = link;
+			}));
+		});
+
+	</script>
+</head>
+<body>
+	<div id="prueba" class="pruebaClass"></div>
+	<a href="http://www.codigofacilito.com">Codigo Facilito</a>
+</body>
+</html>

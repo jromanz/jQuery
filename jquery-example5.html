@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<style>
+		.test{
+			background-color: red;
+		}
+	</style>
+	<script>
+		$(document).on("ready",function(){
+
+
+			$(document).on("click",function(){
+				//$("#test").addClass("test");
+				//$("#test").removeClass("test");
+				$("#test").toggleClass("test");
+
+				if($("#test").hasClass("test")){
+					$("#test").text("Soy rojo!");
+				}else{
+					$("#test").text("No soy rojo :(");
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<button id="boton">Haz click sobre mí</button>
+	<div id="test">Click on me</div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<style>
+
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		body,html{
+			font-family: Myriad Pro, Arial;
+			background: #111a29;
+			color: #fff;
+		}
+
+		#main{
+			display: block;
+			margin: 0 auto;
+			width: 400px;
+		}
+		#main h1{
+			display: block;
+			margin:0 auto;
+			width: 400px;
+		}
+		::selection{
+			background: #e04c22;
+			color: #fff;
+		}
+		form{
+			display: block;
+			width: 100%;
+		}
+		input,textarea{
+			font-family: Myriad Pro, Arial;
+			color: #fff;
+			border: 0;
+			outline:0;
+			background: #1f61ad;
+			border-radius: 1px;
+			font-size: 20px;
+			margin: 10px auto;
+			width: 95%;
+			display: block;
+			max-height: 100%;
+		}
+		textarea{
+			max-width: 95%;
+			height: 100px;
+		}
+		input[type=submit]{
+			display: inline-block;
+			vertical-align: middle;
+			height: 25%;
+			width: 80%;
+			cursor: pointer;
+		}
+		div, div#status{
+			display: block;
+			width: 60%;
+			margin: 0 auto;
+		}
+
+	</style>
+	<script>
+
+		$(document).on("ready",function(){
+
+			var pet = $("#main form").attr("action");
+			var met = $("#main form").attr("method");
+			var nom,m,msj;
+
+
+			$("#main form").on("submit",function(e){
+
+				e.preventDefault();
+
+				$.ajax(
+						{
+							beforeSend: function(){
+								//$("#status").spinner({radius:3,width:2,height:2,length:4});
+								nom = document.fo.nombre.value;	
+								m = document.fo.mail.value;
+								msj = document.fo.mensaje.value;
+							
+						},
+						url: pet,
+						type: met,
+						data: {nombre:nom,mail:m,mensaje:msj},
+						success: function(resp){
+							$("#status").html("<img src='img/eliminar.png' />");
+							console.log(resp);
+						},
+						error: function(jqXHR,estado,error){
+							console.log(estado);
+							$("#status").html("<img src='img/eliminar.png' />");
+							console.log(error);
+						},
+						complete: function(jqXHR,estado){
+							console.log(estado);
+						},
+						timeout: 10000
+					});
+				
+			});
+
+			
+
+			
+		});
+
+	</script>
+</head>
+<body>
+	<div id="main">
+		<h1>Formulario de Contacto</h1>
+		<form action="" name="fo" method="post">
+			<input type="text" name="nombre" placeholder="Nombre..." required />
+			<input type="text" name="mail" placeholder="Correo electrónico..." required />
+			<textarea name="mensaje" placeholder="Mensaje..." required></textarea>
+			<div>
+				<input type="submit" name="send" value="Enviar" />
+				<div id="status"></div>
+			</div>
+		</form>
+	</div>				
+</body>
+</html>

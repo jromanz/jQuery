@@ -1,0 +1,21 @@
+/*	
+	Kalerguiz Consulting http://www.kalerguiz.com
+*/
+/* TEAM */
+	Creator :	Julio Román
+	contact	:	jromanz [at] kalerguiz.com
+	Twitter	:	@kalerguiz
+	From	:	Lima, Perú
+
+/* IN MEMORIAL */
+	Me
+
+/* THANKS */
+	All people always want me
+
+/* SITE */
+	
+	Last update :	2013/01/21
+	Standards	:	HTML5, CSS3
+	Components	:	Modernizer, jQuery, etc.
+	Software	:	Software usado para el desarrollo del site.

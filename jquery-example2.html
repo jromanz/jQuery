@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Mi P&aacute;gina Web Personal</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<script src="js/jquery-1.9.0.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://HTML5shim.googlecode.com/svn/trunk/HTML5.js">
+		</script>
+	<![endif]-->
+	<script type="text/javascript">
+		var arreglo  = new Array();
+		arreglo.push(3);
+		arreglo.push("Hola Mundo!");
+		console.log(arreglo[0]);
+
+		arreglo[0] = "Roofdier Dz";
+		console.log(arreglo[0]);
+
+		var arreglito = [1,2,3,4];
+		console.log(arreglito.length);
+
+		var arreglon = [[7,8,9],['x','y','w','z','t']];
+
+		var cadena = arreglon[1].join("");
+		console.log(cadena);
+
+		var cadenita = "abc-defg";
+		var arreglin = cadenita.split("-");
+
+		console.log(arreglin[0]);
+
+
+		var Gato = new gato("Bola de pelos!");
+		var GatoDos = new gato("Menino");
+
+		function gato(nombre){
+			this.nombre = nombre;
+			this.maulla = function(){
+				alert("miau");
+			};
+		}
+
+		alert("el gato se llama: " + Gato.nombre);
+		alert("El segundo gato se llama" + GatoDos.nombre);
+		Gato.maulla();
+	</script>	
+</head>
+<body>
+	<button id="boton">Haz click sobre mí</button>
+
+</body>
+</html>
